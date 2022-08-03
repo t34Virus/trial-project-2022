@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as countapi from 'countapi-js';
 
 
 @Component({
@@ -9,12 +8,9 @@ import * as countapi from 'countapi-js';
 })
 export class AppComponent {
   title = 'teresaN-trial-project';
-  
   constructor() {}
 
   ngOnInit(): void {
-    countapi.visits().then((result) => {
-      console.log(result.value);
-  });
+
   }
 }
