@@ -1,1 +1,4 @@
-<button (click)="getValue()">hit</button>
+<button (click)="getValue()">Hit Me
+    <span *ngIf="response > 0">Again</span>
+</button>
+<p *ngIf="response > 0">{{response}}</p>
