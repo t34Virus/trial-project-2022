@@ -1,17 +1,28 @@
-FROM node:10.5
+# Stage 1: Compile and Build angular codebase
 
-RUN mkdir -p /usr/app/
+# Use official node image as the base image
+FROM node:latest as build
 
-WORKDIR /usr/app/
+# Set the working directory
+WORKDIR /usr/local/app
 
-COPY ./trial-project-2022/package.json .
+# Add the source code to app
+COPY ./ /usr/local/app/
 
+# Install all the dependencies
 RUN npm install
 
-COPY ./trial-project-2022/ .
+# Generate the build of the application
+RUN npm run build
 
-RUN npm install -g @angular/cli
 
-WORKDIR /usr/app/trial-project-2022
+# Stage 2: Serve app with nginx server
 
+# Use official nginx image as the base image
+FROM nginx:latest
+
+# Copy the build output to replace the default nginx contents.
+COPY --from=build /usr/local/app/dist/teresa-n-trial-project /usr/share/nginx/html
+
+# Expose port 80
 EXPOSE 3000
