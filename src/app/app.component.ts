@@ -13,5 +13,8 @@ export class AppComponent {
   constructor() {}
 
   ngOnInit(): void {
+    countapi.visits().then((result) => {
+      console.log(result.value);
+  });
   }
 }
