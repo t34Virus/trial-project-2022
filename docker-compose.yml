@@ -1,0 +1,9 @@
+version: '3.6'
+services:
+  angular:
+    build: .
+    command: ng serve --host 0.0.0.0 --poll=500
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
